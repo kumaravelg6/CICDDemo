@@ -22,13 +22,13 @@ jobs:
       API_TOKEN : '${{ secrets.API_TOKEN }}'
     steps:
     - name: Build information
-      run: echo "${{ github.event.inputs.Build-version }} ${{ github.event.inputs.Build-number }} "
+      run: echo "Build version - ${{ github.event.inputs.Build-version }}, Build number - ${{ github.event.inputs.Build-number }} "
     - name : Accessing github settings variable
       run :  |
         echo "Environment Server URL: ${{ vars.ENV_SERVER_URL }}"
-    - name : Accessing github settings variable
+    - name : Accessing github secret variable
       run : |
-        echo "API TOKEN from secrets: $API_TOKEN"
-    - name: Check and upload for MADS
+        echo "API TOKEN from secrets: ${{ secrets.API_TOKEN }}"
+    - name: If required to upload IPA in MADS
       if: ${{ github.event.inputs.Upload-to-MADS == 'true' }}
       run: echo "MADS upload required!"
