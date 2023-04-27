@@ -15,20 +15,19 @@ on:
         type: environment
 
 jobs:
-  greet:
+  Build:
     runs-on: ubuntu-latest
-
+    env:
+      API_TOKEN : '${{ env.secrets.API_TOKEN }}'
     steps:
     - name: Build information
       run: echo "${{ github.event.inputs.Build-version }} ${{ github.event.inputs.Build-number }} "
     - name : Accessing github settings variable
       run :  |
-        echo "Environment Server URL:"
-        echo "${{ env.ENV_SERVER_URL }}"
+        echo "Environment Server URL: "${{ env.ENV_SERVER_URL }}"
     - name : Accessing github settings variable
       run : |
-        echo "API TOKEN from secrets:"
-        echo "${{ env.secrets.API_TOKEN }}"
+        echo "API TOKEN from secrets: $API_TOKEN"
     - name: Check and upload for MADS
       if: ${{ github.event.inputs.Upload-to-MADS == 'true' }}
       run: echo "MADS upload required!"
