@@ -22,7 +22,7 @@ jobs:
     - name: Build information
       run: echo "${{ github.event.inputs.Build-version }} ${{ github.event.inputs.Build-number }} "
     - name : Accessing github settings variable
-      run : echo "Github settings env variables value : ${{ env.ENV_SERVER_URL }}"
+      run : echo "${{ env.ENV_SERVER_URL }}"
     - name : Accessing github settings variable
       run : echo "Github settings secret variables value : ${{ secrets.API_TOKEN }}"
     - name: Check and upload for MADS
