@@ -22,9 +22,13 @@ jobs:
     - name: Build information
       run: echo "${{ github.event.inputs.Build-version }} ${{ github.event.inputs.Build-number }} "
     - name : Accessing github settings variable
-      run : echo "${{ env.ENV_SERVER_URL }}"
+      run :  |
+        echo "Environment Server URL:"
+        echo "${{ env.ENV_SERVER_URL }}"
     - name : Accessing github settings variable
-      run : echo "Github settings secret variables value : ${{ secrets.API_TOKEN }}"
+      run : |
+        echo "API TOKEN from secrets:"
+        echo "${{ secrets.API_TOKEN }}"
     - name: Check and upload for MADS
       if: ${{ github.event.inputs.Upload-to-MADS == 'true' }}
       run: echo "MADS upload required!"
