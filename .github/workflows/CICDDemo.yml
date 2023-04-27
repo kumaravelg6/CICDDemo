@@ -28,7 +28,7 @@ jobs:
     - name : Accessing github settings variable
       run : |
         echo "API TOKEN from secrets:"
-        echo "${{ secrets.API_TOKEN }}"
+        echo "${{ env.secrets.API_TOKEN }}"
     - name: Check and upload for MADS
       if: ${{ github.event.inputs.Upload-to-MADS == 'true' }}
       run: echo "MADS upload required!"
