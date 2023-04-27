@@ -24,7 +24,7 @@ jobs:
       run: echo "${{ github.event.inputs.Build-version }} ${{ github.event.inputs.Build-number }} "
     - name : Accessing github settings variable
       run :  |
-        echo "Environment Server URL: "${{ env.ENV_SERVER_URL }}"
+        echo "Environment Server URL: ${{ env.ENV_SERVER_URL }}"
     - name : Accessing github settings variable
       run : |
         echo "API TOKEN from secrets: $API_TOKEN"
