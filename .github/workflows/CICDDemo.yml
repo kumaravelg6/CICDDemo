@@ -3,17 +3,14 @@ name: Mixed inputs
 on:
   workflow_dispatch:
     inputs:
-      name:
-        type: choice
-        description: Who to greet
-        options: 
-        - monalisa
-        - cschleiden
-      message:
+
+      Build-version:
         required: true
-      use-emoji:
+      Build-number:
+        required: true
+      Upload-to-MADS:
         type: boolean
-        description: Include 🎉🤣 emojis
+        description: Select if it requires to upload IPA in MADS
       environment:
         type: environment
 
@@ -22,5 +19,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Send greeting
-      run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", "🥳"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
+    - name: Build information
+      run: echo "${{ github.event.inputs.Build-version }} ${{ github.event.inputs.Build-number }} "
+    - name : Accessing github settings variable
+      run : echo "Github settings env variables value : ${{ env.ENV_SERVER_URL }}"
+    - name : Accessing github settings variable
+      run : echo "Github settings secret variables value : ${{ secrets.API_TOKEN }}"
+    - name: Check and upload for MADS
+      if: ${{ github.event.inputs.Upload-to-MADS == 'true' }}
+      run: echo "MADS upload required!"
