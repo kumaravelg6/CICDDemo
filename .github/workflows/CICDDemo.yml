@@ -30,6 +30,9 @@ jobs:
       run : |
         echo "API TOKEN from secrets: ${{ secrets.API_TOKEN }}"
         echo "APIToken: $API_TOKEN from environment"
+    - name : Accessing github repository global variable
+      run :  |
+        echo "Repository Global variable: ${{ vars.GLOBAL_VAR }}"
     - name: If required to upload IPA in MADS
       if: ${{ github.event.inputs.Upload-to-MADS == 'true' }}
       run: echo "MADS upload required!"
