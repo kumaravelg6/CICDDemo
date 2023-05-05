@@ -29,6 +29,7 @@ jobs:
     - name : Accessing github secret variable
       run : |
         echo "API TOKEN from secrets: ${{ secrets.API_TOKEN }}"
+        echo "APIToken: $API_TOKEN from environment"
     - name: If required to upload IPA in MADS
       if: ${{ github.event.inputs.Upload-to-MADS == 'true' }}
       run: echo "MADS upload required!"
