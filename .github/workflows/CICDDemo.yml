@@ -16,7 +16,7 @@ on:
 
 jobs:
   Build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     environment: ${{ github.event.inputs.environment }}
     env:
       API_TOKEN : '${{ secrets.API_TOKEN }}'
@@ -24,7 +24,7 @@ jobs:
     - name: Setting up env file
       run:  |
         echo pwd
-        source ${{ github.event.inputs.environment }}.env
+        source ${{ github.workspace }}/${{ github.event.inputs.environment }}.env
     - name: Getting base_url from env file
       run: echo "Base URL - ${{ env.BASE_URL }}"
     - name: Build information
