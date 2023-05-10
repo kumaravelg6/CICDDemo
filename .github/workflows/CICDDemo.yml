@@ -19,30 +19,36 @@ jobs:
     env:
       API_TOKEN : '${{ secrets.API_TOKEN }}'
     steps:
-    - uses: actions/checkout@v3
-    - id: dotenv
-    - uses: falti/dotenv-action@v1.0.4
-      with:
-        path: ./${{ github.event.inputs.environment }}.env
-        export-variables: true
-        log-variables: true
-    - run:  |
-        echo "BASE URL - ${{ steps.dotenv.outputs.BASE_URL }}"
-        echo "BASE URL from local machine - $BASE_URL"
-    - name: Getting base_url from env file
-      run: echo "Base URL - ${{ env.BASE_URL }}"
-    - name: Build information
-      run: echo "Build version - ${{ github.event.inputs.Build-version }}, Build number - ${{ github.event.inputs.Build-number }} "
-    - name : Accessing github settings variable
-      run :  |
-        echo "Environment Server URL: ${{ vars.ENV_SERVER_URL }}"
-    - name : Accessing github secret variable
-      run : |
-        echo "API TOKEN from secrets: ${{ secrets.API_TOKEN }}"
-        echo "APIToken: $API_TOKEN from environment"
-    - name : Accessing github repository global variable
-      run :  |
-        echo "Repository Global variable: ${{ vars.GLOBAL_VAR }}"
-    - name: If required to upload IPA in MADS
-      if: ${{ github.event.inputs.Upload-to-MADS == 'true' }}
-      run: echo "MADS upload required!"
+#     - uses: actions/checkout@v3
+#     - id: dotenv
+#     - uses: falti/dotenv-action@v1.0.4
+#       with:
+#         path: ./${{ github.event.inputs.environment }}.env
+#         export-variables: true
+#         log-variables: true
+      - name: Load .env file
+        uses: xom9ikk/dotenv@v2
+        with:
+          path: ./${{ github.event.inputs.environment }}.env
+          load-mode: strict
+      - name: Fetching values
+        run: |
+          echo "Variable 1: ${{ env.BASE_URL }}"
+          echo "BASE URL from local machine - $BASE_URL"
+      - name: Getting base_url from env file
+        run: echo "Base URL - ${{ env.BASE_URL }}"
+      - name: Build information
+        run: echo "Build version - ${{ github.event.inputs.Build-version }}, Build number - ${{ github.event.inputs.Build-number }} "
+      - name : Accessing github settings variable
+        run :  |
+          echo "Environment Server URL: ${{ vars.ENV_SERVER_URL }}"
+      - name : Accessing github secret variable
+        run : |
+          echo "API TOKEN from secrets: ${{ secrets.API_TOKEN }}"
+          echo "APIToken: $API_TOKEN from environment"
+      - name : Accessing github repository global variable
+        run :  |
+          echo "Repository Global variable: ${{ vars.GLOBAL_VAR }}"
+      - name: If required to upload IPA in MADS
+        if: ${{ github.event.inputs.Upload-to-MADS == 'true' }}
+        run: echo "MADS upload required!"
