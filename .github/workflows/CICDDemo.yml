@@ -23,7 +23,8 @@ jobs:
     steps:
     - name: Setting up env file
       run:  |
-        echo pwd
+        cd ${{ github.workspace }}
+        ls -la
         source ${{ github.workspace }}/${{ github.event.inputs.environment }}.env
     - name: Getting base_url from env file
       run: echo "Base URL - ${{ env.BASE_URL }}"
