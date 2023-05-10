@@ -21,10 +21,9 @@ jobs:
     env:
       API_TOKEN : '${{ secrets.API_TOKEN }}'
     steps:
+    - uses: actions/checkout@v3
     - name: Setting up env file
       run:  |
-        cd ${{ github.workspace }}
-        cd ..
         ls -la
         source ${{ github.workspace }}/${{ github.event.inputs.environment }}.env
     - name: Getting base_url from env file
