@@ -22,7 +22,9 @@ jobs:
       API_TOKEN : '${{ secrets.API_TOKEN }}'
     steps:
     - name: Setting up env file
-      run: source ${{ github.event.inputs.environment }}.env
+      run:  |
+        echo pwd
+        source ${{ github.event.inputs.environment }}.env
     - name: Getting base_url from env file
       run: echo "Base URL - ${{ env.BASE_URL }}"
     - name: Build information
