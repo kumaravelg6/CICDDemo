@@ -25,7 +25,7 @@ jobs:
     - name: Setting up env file
       run:  |
         ls -la
-        source ${{ github.workspace }}/${{ github.event.inputs.environment }}.env
+        source ${{ github.event.inputs.environment }}.env
     - name: Getting base_url from env file
       run: echo "Base URL - ${{ env.BASE_URL }}"
     - name: Build information
