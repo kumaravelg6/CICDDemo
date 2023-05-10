@@ -34,8 +34,8 @@ jobs:
           mode: ${{ github.event.inputs.environment }}
       - name: Fetching values
         run: |
-          echo "Variable 1: ${{ env.BASE_URL }}"
-          echo "BASE URL from local machine - $BASE_URL"
+          echo "Env file Custom Variable - $CUSTOM_VAR1"
+          echo "Env file BASE URL - $BASE_URL"
       - name: Build information
         run: echo "Build version - ${{ github.event.inputs.Build-version }}, Build number - ${{ github.event.inputs.Build-number }} "
       - name : Accessing github settings variable
