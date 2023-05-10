@@ -26,8 +26,7 @@ jobs:
         path: ./${{ github.event.inputs.environment }}.env
         export-variables: true
         log-variables: true
-    - name: Setting up env file
-      run:  |
+    - run:  |
         echo "BASE URL - ${{ steps.dotenv.outputs.BASE_URL }}"
         echo "BASE URL from local machine - $BASE_URL"
     - name: Getting base_url from env file
