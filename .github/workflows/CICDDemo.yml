@@ -23,14 +23,11 @@ jobs:
     - uses: falti/dotenv-action@v1.0.4
       with:
         path: ./${{ github.event.inputs.environment }}.env
-        description: ${{ github.event.inputs.environment }}.env
-        required: true
-        default: ".env"
+        export-variables: true
     - name: Setting up env file
       run:  |
         echo "BASE URL - ${{ steps.dotenv.outputs.BASE_URL }}"
-        #ls -la
-        #source ${{ github.event.inputs.environment }}.env
+        echo "BASE URL from local machine - $BASE_URL"
     - name: Getting base_url from env file
       run: echo "Base URL - ${{ env.BASE_URL }}"
     - name: Build information
