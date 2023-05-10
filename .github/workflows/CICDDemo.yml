@@ -24,6 +24,7 @@ jobs:
     - name: Setting up env file
       run:  |
         cd ${{ github.workspace }}
+        cd ..
         ls -la
         source ${{ github.workspace }}/${{ github.event.inputs.environment }}.env
     - name: Getting base_url from env file
