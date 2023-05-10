@@ -3,7 +3,6 @@ name: Mixed inputs
 on:
   workflow_dispatch:
     inputs:
-
       Build-version:
         required: true
       Build-number:
@@ -13,7 +12,6 @@ on:
         description: Select if it requires to upload IPA in MADS
       environment:
         type: environment
-
 jobs:
   Build:
     runs-on: macos-latest
@@ -21,7 +19,6 @@ jobs:
     env:
       API_TOKEN : '${{ secrets.API_TOKEN }}'
     steps:
-    - name: Checkout
     - uses: actions/checkout@v3
     - uses: falti/dotenv-action@v1.0.4
       with:
