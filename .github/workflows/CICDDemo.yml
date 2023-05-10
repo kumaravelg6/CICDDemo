@@ -24,7 +24,7 @@ jobs:
     - name: Setting up env file
       run: source ${{ github.event.inputs.environment }}.env
     - name: Getting base_url from env file
-      run: echo "Base URL : ${{ env.BASE_URL }}"
+      run: echo "Base URL - ${{ env.BASE_URL }}"
     - name: Build information
       run: echo "Build version - ${{ github.event.inputs.Build-version }}, Build number - ${{ github.event.inputs.Build-number }} "
     - name : Accessing github settings variable
