@@ -20,19 +20,19 @@ jobs:
       API_TOKEN : '${{ secrets.API_TOKEN }}'
     steps:
       - uses: actions/checkout@v3
-#         uses: qgxpagamentos/replace-env-file-action@v1
-#         with:
-#           path: ./.env.${{ github.event.inputs.environment }}
-#           add_if_not_exist: true
-#           map: |
-#             CUSTOM_VAR1 = "This is modified custom value"
-#             KEY2=VALUE2
-      - name: var-dotenv-action
-        uses: shobhitsharma/var-dotenv-action@v1.1.0
+      - uses: qgxpagamentos/replace-env-file-action@v1
         with:
-          key: 'CUSTOM_VAR1'
-          value: 'Overrided custom var'
-          envPath: './.env.${{ github.event.inputs.environment }}'
+          path: ./.env.${{ github.event.inputs.environment }}
+          add_if_not_exist: true
+          map: |
+            CUSTOM_VAR1 = "This is modified custom value"
+            KEY2=VALUE2
+#       - name: var-dotenv-action
+#         uses: shobhitsharma/var-dotenv-action@v1.1.0
+#         with:
+#           key: 'CUSTOM_VAR1'
+#           value: 'Overrided custom var'
+#           envPath: './.env.${{ github.event.inputs.environment }}'
       - name: Load .env file after modified
         uses: xom9ikk/dotenv@v2.2.0
         with:
