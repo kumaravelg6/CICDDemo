@@ -31,8 +31,7 @@ jobs:
           echo "Env file Custom Variable - $CUSTOM_VAR1"
           echo "Env file BASE URL - $BASE_URL"
       - name: Replace values in env File
-      - uses: actions/checkout@v2
-      - uses: franzbischoff/replace_envs@v1
+        uses: franzbischoff/replace_envs@v1
         env:
           CUSTOM_VAR1: 'This is modified custom value'
         with:
