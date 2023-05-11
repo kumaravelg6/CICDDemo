@@ -20,17 +20,6 @@ jobs:
       API_TOKEN : '${{ secrets.API_TOKEN }}'
     steps:
       - uses: actions/checkout@v3
-      - name: replace-env-file-action
-        uses: iamazeem/substitute-action@v1
-        env:
-          CUSTOM_VAR1: 'This is modified custom value1'
-          KEY2: 'VALUE2'
-        with:
-            env-files: |
-              .env.${{ github.event.inputs.environment }}
-            input-files: |
-              input.json
-              input.yaml
 #         uses: qgxpagamentos/replace-env-file-action@v1
 #         with:
 #           path: ./.env.${{ github.event.inputs.environment }}
@@ -38,6 +27,12 @@ jobs:
 #           map: |
 #             CUSTOM_VAR1 = "This is modified custom value"
 #             KEY2=VALUE2
+      - name: var-dotenv-action
+        uses: shobhitsharma/var-dotenv-action@v1.1.0
+        with:
+          key: 'CUSTOM_VAR1'
+          value: 'Overrided custom var'
+          envPath: './.env.${{ github.event.inputs.environment }}'
       - name: Load .env file after modified
         uses: xom9ikk/dotenv@v2.2.0
         with:
