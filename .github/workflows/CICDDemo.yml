@@ -31,13 +31,13 @@ jobs:
 #           echo "Env file Custom Variable - $CUSTOM_VAR1"
 #           echo "Env file BASE URL - $BASE_URL"
       - name: Replace values in env File
-        uses: franzbischoff/replace_envs@v1
-        env:
-          CUSTOM_VAR1: 'This is modified custom value'
+        uses: qgxpagamentos/replace-env-file-actionn@v1
         with:
-          from_file: '.env.${{ github.event.inputs.environment }}'
-          to_file: '.env.${{ github.event.inputs.environment }}'
-          commit: 'false'
+          path: ./.env.${{ github.event.inputs.environment }}
+          add_if_not_exist: true
+          map: |
+            CUSTOM_VAR1 = "This is modified custom value"
+            KEY2=VALUE2
       - name: Load .env file after modified
         uses: xom9ikk/dotenv@v2.2.0
         with:
@@ -47,6 +47,7 @@ jobs:
       - name: Fetching custom values after modified
         run: |
           echo "Env file Custom Variable - $CUSTOM_VAR1"
+          echo "Newly added var - $KEY2"
       - name: Build information
         run: echo "Build version - ${{ github.event.inputs.Build-version }}, Build number - ${{ github.event.inputs.Build-number }} "
       - name : Accessing github settings variable
