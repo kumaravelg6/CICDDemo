@@ -20,16 +20,16 @@ jobs:
       API_TOKEN : '${{ secrets.API_TOKEN }}'
     steps:
       - uses: actions/checkout@v3
-      - name: Load .env file
-        uses: xom9ikk/dotenv@v2.2.0
-        with:
-          path: ./
-          load-mode: strict
-          mode: ${{ github.event.inputs.environment }}
-      - name: Fetching values
-        run: |
-          echo "Env file Custom Variable - $CUSTOM_VAR1"
-          echo "Env file BASE URL - $BASE_URL"
+#       - name: Load .env file
+#         uses: xom9ikk/dotenv@v2.2.0
+#         with:
+#           path: ./
+#           load-mode: strict
+#           mode: ${{ github.event.inputs.environment }}
+#       - name: Fetching values
+#         run: |
+#           echo "Env file Custom Variable - $CUSTOM_VAR1"
+#           echo "Env file BASE URL - $BASE_URL"
       - name: Replace values in env File
         uses: franzbischoff/replace_envs@v1
         env:
