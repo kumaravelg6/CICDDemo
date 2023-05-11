@@ -28,6 +28,9 @@ jobs:
         with:
             env-files: |
               .env.${{ github.event.inputs.environment }}
+            input-files: |
+              input.json
+              input.yaml
 #         uses: qgxpagamentos/replace-env-file-action@v1
 #         with:
 #           path: ./.env.${{ github.event.inputs.environment }}
