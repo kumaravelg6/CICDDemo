@@ -30,8 +30,8 @@ jobs:
 #         run: |
 #           echo "Env file Custom Variable - $CUSTOM_VAR1"
 #           echo "Env file BASE URL - $BASE_URL"
-      - name: Replace values in env File
-        uses: qgxpagamentos/replace-env-file-actionn@v1
+      - name: replace-env-file-action
+        uses: qgxpagamentos/replace-env-file-action@v1
         with:
           path: ./.env.${{ github.event.inputs.environment }}
           add_if_not_exist: true
