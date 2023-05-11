@@ -21,14 +21,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: replace-env-file-action
-        uses: c-py/action-dotenv-to-setenv@v2
+        uses: iamazeem/substitute-action@v1
+        env:
+          CUSTOM_VAR1: 'This is modified custom value1'
+          KEY2: 'VALUE2'
         with:
-          env-file: .env.${{ github.event.inputs.environment }}
-      - name: setting the variables
-        run: |
-          echo "CUSTOM_VAR1='This is modified custom value'" >> $GITHUB_ENV
-          echo "KEY2=VALUE2" >> $GITHUB_ENV
-          echo "KEY3=VALUE3" >> $GITHUB_ENV
+            env-files: |
+              .env.${{ github.event.inputs.environment }}
 #         uses: qgxpagamentos/replace-env-file-action@v1
 #         with:
 #           path: ./.env.${{ github.event.inputs.environment }}
@@ -46,7 +45,6 @@ jobs:
         run: |
           echo "Env file Custom Variable - $CUSTOM_VAR1"
           echo "Newly added var - $KEY2"
-          echo "Newly added var - $KEY3"
       - name: Build information
         run: echo "Build version - ${{ github.event.inputs.Build-version }}, Build number - ${{ github.event.inputs.Build-number }} "
       - name : Accessing github settings variable
