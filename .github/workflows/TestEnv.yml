@@ -27,12 +27,13 @@ jobs:
   Test:
     runs-on: macos-latest
     steps:
-      - name: Change String Case
-        uses: ASzc/change-string-case-action@v5
-        with:
-          string: ABCD
+        - id: envString
+          uses: ASzc/change-string-case-action@v5
+          with:
+            string: ${{ env.env_name }}
+        - id: step2
           run : |
-            echo "Environment name: ${{ env.env_name.lowercase }}"
+            echo "Environment name: ${{ steps.envString.outputs.lowercase }}"
       
     
 
