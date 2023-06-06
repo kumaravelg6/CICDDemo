@@ -2,6 +2,9 @@ name: EnvConfig
 
 on:
   workflow_dispatch:
+    inputs:
+     environment:
+     type: environment
 env:
   env_name: ${{ github.event.inputs.environment }}
 jobs:
@@ -21,4 +24,12 @@ jobs:
       - name : Accessing github repository global variable
         run :  |
           echo "Repository Global variable: ${{ vars.GLOBAL_VAR }}"
+  Test:
+    runs-on: macos-latest
+    environment: ${{ github.event.inputs.environment }}
+    steps:
+      - name : String lower
+        echo "Environment name: ${{ env.env_name }}"
+      
+    
 
