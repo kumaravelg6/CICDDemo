@@ -32,7 +32,7 @@ jobs:
           uses: ASzc/change-string-case-action@v5
           with:
             string: ${{ env.env_name }}
-        - id: step2
+        - name: step2
           run : |
             echo "Environment name before lowercase: ${{ env.env_name }}"
             echo "Environment name after lowercase: ${{ steps.envString.outputs.lowercase }}"
