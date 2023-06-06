@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
      environment:
-     type: environment
+      type: environment
 env:
   env_name: ${{ github.event.inputs.environment }}
 jobs:
@@ -29,7 +29,8 @@ jobs:
     environment: ${{ github.event.inputs.environment }}
     steps:
       - name : String lower
-        echo "Environment name: ${{ env.env_name }}"
+        run : |
+          echo "Environment name: ${{ env.env_name }}"
       
     
 
