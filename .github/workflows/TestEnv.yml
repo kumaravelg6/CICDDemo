@@ -26,11 +26,13 @@ jobs:
           echo "Repository Global variable: ${{ vars.GLOBAL_VAR }}"
   Test:
     runs-on: macos-latest
-    environment: ${{ github.event.inputs.environment }}
     steps:
-      - name : String lower
-        run : |
-          echo "Environment name: ${{ env.env_name }}"
+      - name: Change String Case
+        uses: ASzc/change-string-case-action@v5
+        with:
+          string: ABCD
+          run : |
+            echo "Environment name: ${{ env.env_name.lowercase }}"
       
     
 
