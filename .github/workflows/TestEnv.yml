@@ -25,6 +25,7 @@ jobs:
         run :  |
           echo "Repository Global variable: ${{ vars.GLOBAL_VAR }}"
   Test:
+    needs: Build
     runs-on: macos-latest
     steps:
         - id: envString
@@ -33,7 +34,8 @@ jobs:
             string: ${{ env.env_name }}
         - id: step2
           run : |
-            echo "Environment name: ${{ steps.envString.outputs.lowercase }}"
+            echo "Environment name before lowercase: ${{ env.env_name }}"
+            echo "Environment name after lowercase: ${{ steps.envString.outputs.lowercase }}"
       
     
 
