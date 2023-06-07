@@ -42,6 +42,6 @@ jobs:
     steps:
       - name: Fetch environment from another job
         run : |
-          echo "Fetch environment from anther job : ${{ jobs.Test1.steps.envString.outputs }}"
+          echo "Fetch environment from anther job : ${{ needs.Test1.steps.envString.outputs }}"
     
 
