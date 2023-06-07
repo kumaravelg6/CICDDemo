@@ -37,7 +37,7 @@ jobs:
             echo "Environment name before lowercase: ${{ env.env_name }}"
             echo "Environment name after lowercase: ${{ steps.envString.outputs.lowercase }}"
     outputs:
-      envName: ${{ env.env_name.lowercase }}
+      envName: TEST
     
   Test2:
     needs: Test1
