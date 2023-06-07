@@ -36,12 +36,15 @@ jobs:
           run : |
             echo "Environment name before lowercase: ${{ env.env_name }}"
             echo "Environment name after lowercase: ${{ steps.envString.outputs.lowercase }}"
+    outputs:
+      envName: ${{ env.env_name.lowercase }}
+    
   Test2:
     needs: Test1
     runs-on: macos-latest
     steps:
       - name: Fetch environment from another job
         run : |
-          echo "Fetch environment from anther job : ${{ needs.Test1.steps.envString.outputs }}"
+          echo "Fetch environment from anther job : ${{ needs.Test1.outputs.envName }}"
     
 
