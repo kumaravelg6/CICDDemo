@@ -1,0 +1,32 @@
+name: CICD
+#Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "PL_R1_Devops" branch
+  push:
+    branches: [ "feature_test" ]
+  pull_request:
+    branches: [ "feature_test" ]
+  # Allows you to run this workflow manually from the Actions tab menu option
+  workflow_dispatch:
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+env:
+  env_name: QA
+jobs:
+  # This workflow contains a multiple jobs
+  Build:
+    name: Build
+    runs-on: macos-13
+    environment: QA     #This is the enviroment defined in github settings
+    env:
+      API_TOKEN: ${{ secrets.IPA_PATH }}
+      ENV_SERVER_URL: ${{ vars.ENV_SERVER_URL }}
+    # The type of runner that the job will run on
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - name: Checking ENV Variables
+        run: |
+          echo 'ENV secret variable: MADS_API_TOKEN : $API_TOKEN'
+          echo 'ENV variable: ENV_SERVER_URL : $ENV_SERVER_URL'
+          echo 'Env name: ${{ env.env_name }}'
