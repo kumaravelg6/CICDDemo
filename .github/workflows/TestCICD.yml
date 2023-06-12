@@ -1,4 +1,4 @@
-name: CICD
+name: FeatureCICD
 #Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "PL_R1_Devops" branch
