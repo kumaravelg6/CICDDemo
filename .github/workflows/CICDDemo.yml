@@ -43,6 +43,7 @@ jobs:
           mode: ${{ github.event.inputs.environment }}
       - name: Fetching custom values after modified
         run: |
+          echo "Executing from MAIN branch YAML file"
           echo "Env file Custom Variable - $CUSTOM_VAR1"
           echo "Newly added var - $KEY2"
       - name: Build information
