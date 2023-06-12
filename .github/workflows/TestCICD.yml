@@ -9,8 +9,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab menu option
   workflow_dispatch:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    inputs:
+     environment:
+      type: environment
 env:
-  env_name: QA
+  env_name: ${{ github.event.inputs.environment }}
 jobs:
   # This workflow contains a multiple jobs
   Build:
