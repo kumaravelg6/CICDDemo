@@ -3,12 +3,22 @@ name: Reusable Workflow
 on:
   workflow_call:
     inputs:
-      name:
+      step_to_run:
         required: true
         type: string
 
 jobs:
-  greet:
+  run-specific-step:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello, ${{ inputs.name }}!"
+      - name: Step A
+        if: ${{ inputs.step_to_run == 'A' }}
+        run: echo "Running Step A"
+
+      - name: Step B
+        if: ${{ inputs.step_to_run == 'B' }}
+        run: echo "Running Step B"
+
+      - name: Step C
+        if: ${{ inputs.step_to_run == 'C' }}
+        run: echo "Running Step C"
