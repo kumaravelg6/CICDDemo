@@ -1,22 +1,22 @@
-name: Caller Workflow
+name: Main Caller Workflow
 
 on:
   workflow_dispatch:
 
 jobs:
-  step-one:
+  run-a:
     uses: ./.github/workflows/called.yml
     with:
-      name: Step One
+      step_to_run: A
 
-  step-two:
-    needs: step-one
+  run-b:
+    needs: run-a
     uses: ./.github/workflows/called.yml
     with:
-      name: Step Two
+      step_to_run: B
 
-  step-three:
-    needs: step-two
+  run-c:
+    needs: run-b
     uses: ./.github/workflows/called.yml
     with:
-      name: Step Three
+      step_to_run: C
