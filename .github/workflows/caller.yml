@@ -1,0 +1,22 @@
+name: Main Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  step-one:
+    uses: ./.github/workflows/called.yml
+    with:
+      name: Step One
+
+  step-two:
+    needs: step-one
+    uses: ./.github/workflows/called.yml
+    with:
+      name: Step Two
+
+  step-three:
+    needs: step-two
+    uses: ./.github/workflows/called.yml
+    with:
+      name: Step Three
