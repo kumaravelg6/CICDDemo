@@ -19,6 +19,7 @@ jobs:
   step-b:
     if: contains(inputs.steps_to_run, 'B')
     runs-on: ubuntu-latest
+    needs: step-a
     steps:
       - run: |
           echo "Running job B"
@@ -27,6 +28,7 @@ jobs:
   step-c:
     if: contains(inputs.steps_to_run, 'C')
     runs-on: ubuntu-latest
+    needs: step-b
     steps:
       - run: |
           echo "Running job C"
