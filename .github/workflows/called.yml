@@ -12,16 +12,22 @@ jobs:
     if: contains(inputs.steps_to_run, 'A')
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Running job A"
+      - run: |
+          echo "Running job A"
+          sleep 10
 
   step-b:
     if: contains(inputs.steps_to_run, 'B')
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Running job B"
+      - run: |
+          echo "Running job B"
+          sleep 10
 
   step-c:
     if: contains(inputs.steps_to_run, 'C')
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Running job C"
+      - run: |
+          echo "Running job C"
+          sleep 10
