@@ -2,21 +2,14 @@ name: Main Caller Workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      steps:
+        description: 'Comma-separated steps to run (e.g., A,C,B)'
+        required: true
+        default: 'A,B,C'
 
 jobs:
-  run-a:
+  run-ordered-steps:
     uses: ./.github/workflows/called.yml
     with:
-      step_to_run: A
-
-  run-b:
-    needs: run-a
-    uses: ./.github/workflows/called.yml
-    with:
-      step_to_run: B
-
-  run-c:
-    needs: run-b
-    uses: ./.github/workflows/called.yml
-    with:
-      step_to_run: C
+      steps_to_run: ${{ github.event.inputs.steps }}
